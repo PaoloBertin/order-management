@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}"
+>
+
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+
+<body>
+<div class="container-fluid p-0">
+
+    <!-- intestazione -->
+    <div th:replace="~{fragments/header :: header}">header</div>
+
+    <!-- corpo centrale -->
+    <div class="row">
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/left_side :: left_side}">left side</div>
+        </div>
+
+        <div class="col-lg-8">
+
+            <br/>
+            <h5 th:text="#{label.cart.details}">Dettagli Carrello</h5>
+            <br/>
+
+            <div th:if="${cart.cartItems.size()} > 0">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="font-weight-bold text-right" style="width: 25%" th:text="#{label.item.name}"></th>
+                        <th scope="col" class="font-weight-bold text-right" style="width: 20%" th:text="#{label.item.price}"></th>
+                        <th scope="col" class="font-weight-bold text-right" style="width: 15%" th:text="#{label.item.quantity}"></th>
+                        <th scope="col" class="font-weight-bold text-right" style="width: 20%" th:text="#{label.cart.subtotal}"></th>
+                        <th scope="col" style="width: 20%">&nbsp;</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="item : ${cart.cartItems}">
+                        <td class="text-right" th:text="${item.key.name}">name</td>
+                        <td class="text-right" th:text="${#numbers.formatDecimal(item.key.price, 0, 'COMMA', 2, 'POINT')}  + ' &euro;'"></td>
+                        <td class="text-right" th:text="${item.value}"></td>
+                        <td class="text-right" th:text="${#numbers.formatDecimal((item.key.price * item.value),  0, 'COMMA', 2, 'POINT')} + ' &euro;'"></td>
+                        <!--
+                        <td>
+                            <a th:href="@{'/cart/remove/' + ${item.key.productCode}}">
+                                <span class="fa fa-trash fa-lg">iiii</span>
+                            </a>
+                        </td>
+                        -->
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td class="text-right">Totale</td>
+                            <td class="text-left" th:text="${#numbers.formatDecimal((cart.totalAmount),  0, 'COMMA', 2, 'POINT')} + ' &euro;'"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <br/>
+
+                <!--   -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a th:href="@{'/orders/checkout'}">
+                            <span th:text="#{label.cart.proceed_order}">Procedi con l'ordine</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a th:href="@{'/cart/clear'}">
+                            <span th:text="#{label.cart.empty}">Svuota il carrello</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a th:href="@{'/catalog/1'}">
+                            <span th:text="#{label.cart.continue}">Continua lo shopping</span>
+                        </a>
+                    </div>
+                </div>
+                <br/>
+            </div>
+
+            <!--  -->
+            <div th:if="${cart.cartItems.size()} < 1">
+                <br/>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <span th:text="#{label.cart.empty_cart}">carrello acquisti vuoto</span>
+                    </div>
+                    <div class="col-lg-4">
+                        <a th:href="@{'/catalog/1'}">
+                            <span th:text="#{label.cart.continue}">Continua lo shopping</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <span>&nbsp;</span>
+                    </div>
+                </div>
+                <br/>
+            </div>
+
+        </div>
+
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/right_side :: right_side}">right side</div>
+        </div>
+    </div>
+
+    <!-- pie' pagina -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

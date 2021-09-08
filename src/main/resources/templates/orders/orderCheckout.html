@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+<div class="container-fluid p-0">
+
+    <!-- intestazione -->
+    <div th:replace="~{fragments/header :: header}">header</div>
+
+    <!-- corpo centrale -->
+    <div class="row">
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/left_side :: left_side}">left side</div>
+        </div>
+
+        <div class="col-lg-8">
+            <br/>
+            <h5 th:text="#{label.order.checkout}">order checkout</h5>
+            <br/>
+
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="#{label.customer.holder}">Intestazione Ordine</h5>
+                            <div>
+                                <span class="card-text" th:text="${customer.firstname}"></span>
+                                <span class="card-text" th:text="${customer.lastname}"></span>
+                            </div>
+
+                            <div>
+                                <span class="card-text" th:text="${customer.header_addres.street}"></span>
+                                <span class="card-text" th:text="${customer.header_addres.houseNumber}"></span>
+                            </div>
+
+                            <div>
+                                <!-- <span class="card-text" th:text="${customer.address.zipCode}"></span> -->
+                                <span class="card-text" th:text="${customer.header_addres.city}"></span>
+                                <span class="card-text">-</span>
+                                <span class="card-text" th:text="${customer.header_addres.country}"></span>
+                            </div>
+                            <div>
+                                <span class="card-text" th:text="${customer.header_addres.state}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="#{label.customer.delivery}">Consegna</h5>
+                            <div>
+                                <span class="card-text" th:text="${customer.firstname}"></span>
+                                <span class="card-text" th:text="${customer.lastname}"></span>
+                            </div>
+                            <div>
+                                <span class="card-text" th:text="${customer.delivery_addres.street}"></span>
+                                <span class="card-text" th:text="${customer.delivery_addres.houseNumber}"></span>
+                            </div>
+                            <div>
+                                <span class="card-text" th:text="${customer.delivery_addres.city}"></span>
+                                <span class="card-text">-</span>
+                                <span class="card-text" th:text="${customer.delivery_addres.country}"></span>
+                            </div>
+                            <div>
+                                <span class="card-text" th:text="${customer.delivery_addres.state}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-12">
+                    <a th:href="@{/customers/changeAddresses}" class="btn btn-primary" th:text="#{label.edit}">Edita</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/right_side :: right_side}">right side</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/left_side :: left_side}">left side</div>
+        </div>
+
+        <div class="col-lg-6">
+            <br/>
+            <br/>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" class="font-weight-bold text-right" style="width: 25%" th:text="#{label.item.name}"></th>
+                    <th scope="col" class="font-weight-bold text-right" style="width: 20%" th:text="#{label.item.price}"></th>
+                    <th scope="col" class="font-weight-bold text-right" style="width: 15%" th:text="#{label.item.quantity}"></th>
+                    <th scope="col" style="width: 20%">&nbsp;</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="item : ${cart.cartItems}">
+                    <td class="text-right" th:text="${item.key.name}">name</td>
+                    <td class="text-right" th:text="${#numbers.formatDecimal(item.key.price, 0, 'COMMA', 2, 'POINT')}  + ' &euro;'"></td>
+                    <td class="text-right" th:text="${item.value}"></td>
+                    <td>&nbsp;</td>
+                </tr>
+                </tbody>
+
+                <tfoot>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="text-right">Totale</td>
+                    <td class="text-left" th:text="${#numbers.formatDecimal((cart.totalAmount),  0, 'COMMA', 2, 'POINT')} + ' &euro;'"></td>
+                </tr>
+                </tfoot>
+            </table>
+            <br/>
+            <a class="btn btn-primary" th:href="@{/orders/}" role="button" th:text="#{label.order}">order</a>
+        </div>
+
+        <div class="col-lg-4">
+            <div th:replace="~{fragments/right_side :: right_side}">right side</div>
+        </div>
+
+    </div>
+
+    <!-- pie' pagina -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

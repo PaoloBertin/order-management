@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+
+<html th:lang="${lang}"
+      th:with="lang=${#locale.language}"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+<div class="container-fluid p-0">
+
+    <!-- intestazione -->
+    <div th:replace="~{fragments/header :: header}">header</div>
+
+    <!-- corpo centrale -->
+    <div class="row">
+        <!-- left side -->
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/left_side :: left_side}">left side</div>
+        </div>
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/left_side_menu_admin :: left_side}">left side</div>
+        </div>
+
+        <div class="col-lg-6">
+            <br/>
+            <!--  -->
+            <h4 th:text="${categoryName}">products listing</h4>
+            <br/>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th th:text="#{label.product.name}"></th>
+                    <th th:text="#{label.product.code}"></th>
+                    <th th:text="#{label.edit}">edit</th>
+                    <th th:text="#{label.delete}">delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.name}">name</td>
+                    <td th:text="${product.productCode}">code</td>
+                    <td>
+                         <a th:href="@{/admin/catalog/all/{productId}(productId=${product.id})}">
+                            <i class="fa fa-edit fa-lg"></i>
+                         </a>
+                    </td>
+                    <td>
+                        <form th:action="@{'/admin/products/'}" th:method="delete">
+                            <input type="hidden" name="id" th:value="${product.id}"/>
+                            <button class="btn">
+                                <i class="fa fa-trash fa-lg"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--
+                        <br/>
+                        <div class="row justify-content-center">
+                            <nav aria-label="navigation" th:if="${products.totalPages gt 1}">
+                                <ul class="pagination" th:with="pages=${products.totalPages}">
+                                    <li class="page-item" th:classappend="${page eq 0} ? 'disabled'">
+                                        <a class="page-link"
+                                           th:href="@{/products/{categoryId}/all(categoryId=${categoryId},page=${0},size=${size})}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" th:classappend="${page eq 0} ? 'disabled'">
+                                        <a class="page-link"
+                                           th:href="@{/products/{categoryId}/all(categoryId=${categoryId},page=${page-1},size=${size})}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&lsaquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" th:classappend="disabled">
+                                        <a class="page-link" th:text="${page + 1}">-1</a>
+                                    </li>
+                                    <li class="page-item" th:classappend="disabled">
+                                        <a class="page-link">
+                                            <span>di</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" th:classappend="disabled">
+                                        <a class="page-link" th:text="${pages}">3</a>
+                                    </li>
+                                    <li class="page-item" th:classappend="${page eq (products.totalPages - 1)} ? 'disabled'">
+                                        <a class="page-link"
+                                           th:href="@{/products/{categoryId}/all(categoryId=${categoryId},page=${page + 1},size=${size})}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&rsaquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" th:classappend="${page eq (products.totalPages - 1)} ? 'disabled'">
+                                        <a class="page-link"
+                                           th:href="@{/products/{categoryId}/all(categoryId=${categoryId},page=${products.totalPages - 1},size=${size})}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+            -->
+
+        </div>
+
+        <!-- right side -->
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/right_side :: right_side}">right side</div>
+        </div>
+    </div>
+
+    <!-- pie' pagina -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</div>
+</body>

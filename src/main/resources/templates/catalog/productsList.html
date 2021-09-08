@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+
+<html th:lang="${lang}"
+      th:with="lang=${#locale.language}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+<div class="container-fluid p-0">
+
+    <!-- intestazione -->
+    <div th:replace="~{fragments/header :: header}">header</div>
+
+    <!-- corpo centrale -->
+    <div class="row">
+        <!-- left side -->
+        <div class="col-lg-2">
+            <div></div>
+        </div>
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/left_side_menu :: left_side}">left side</div>
+        </div>
+
+        <div class="col-lg-5">
+            <br/>
+            <!--  -->
+            <h4 th:text="${categoryName}">products listing</h4>
+            <br/>
+
+            <div th:each="product : ${products}">
+                <div class="card" style="font-size: 1rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <span th:text="${product.name}">name</span>
+                                </div>
+                                <div class="col-lg-4">
+                                    <span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')} + ' &euro;'">prezzo</span>
+                                </div>
+                                <div class="col-lg-2" sec:authorize="isAuthenticated()">
+                                    <a th:href="@{/cart/add(productCode=${product.productCode})}" th:title="#{label.add_cart}">
+                                        <span style="font-size: 2rem;">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </h5>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span th:text="${product.description}">descrizione</span>
+                            </div>
+                        </div>
+                        <!-- <a href="#" class="card-link">Card link</a> -->
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </div>
+
+        <!-- right side -->
+        <div class="col-lg-3">
+            <div th:replace="~{fragments/right_side :: right_side}">right side</div>
+        </div>
+    </div>
+
+    <!-- pie' pagina -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</div>
+</body>

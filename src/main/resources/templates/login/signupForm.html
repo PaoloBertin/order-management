@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+<div  class="container-fluid p-0">
+
+    <!-- intestazione -->
+    <div th:replace="~{fragments/header :: header}">header</div>
+
+    <!-- corpo centrale  -->
+    <div class="row">
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/left_side :: left_side}">left side</div>
+        </div>
+
+        <div class="col-lg-4">
+            <br/>
+            <h5>Registrazione</h5>
+            <br/>
+            <form name="registrationForm" th:object="${signupForm}" th:attr="action=@{/signup/new}" th:method="post">
+                <div class="form-group">
+                    <label id="labelFirstname" for="inpuFirstname" th:text="#{label.customer.firstname}"></label>
+                    <input class="form-control" id="inpuFirstname" type="text" name="firstname" th:field="*{firstname}"/>
+                </div>
+
+                <div class="form-group">
+                    <label id="labeLastname" for="inputLastname" th:text="#{label.customer.lastname}"></label>
+                    <input class="form-control" id="inputLastname" type="text" name="lastname" th:field="*{lastname}"/>
+                </div>
+
+                <div class="form-group">
+                    <label id="labelEmail" for="inputEmail" th:text="#{label.customer.email}"></label>
+                    <input class="form-control" id="inputEmail" type="text" name="username" th:field="*{username}"/>
+                </div>
+                <div class="form-group">
+                    <label id="labelPassword" for="inputPassword" th:text="#{label.password}"></label>
+                    <input class="form-control" id="inputPassword" type="password" name="password"/>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary" style="margin-right: 5px" th:text="#{label.send}"></button>
+                <button type="reset" class="btn btn-primary" style="margin-left: 5px" th:text="#{label.reset}"></button>
+            </form>
+            <br/>
+        </div>
+
+        <div class="col-lg-6">
+            <div th:replace="~{fragments/right_side :: right_side}">right side</div>
+        </div>
+    </div>
+
+    <!-- pie' pagina -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

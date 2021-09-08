@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+<div class="container-fluid p-0">
+
+    <!-- intestazione -->
+    <div th:replace="~{fragments/header :: header}">header</div>
+
+    <!-- corpo centrale -->
+    <div class="row">
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/left_side :: left_side}">left side</div>
+        </div>
+
+        <div class="col-lg-8">
+            <br/>
+            <h5 th:text="#{label.customer.addresses}">indirizzi</h5>
+            <br/>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="#{label.customer.holder}">indirizzo intestatario</h5>
+                            <div>
+                                <span class="card-text" th:text="${customer.header_addres.firstname}"></span>
+                                <span class="card-text" th:text="${customer.header_addres.lastname}"></span>
+                            </div>
+
+                            <div>
+                                <span class="card-text" th:text="${customer.header_addres.street}"></span>
+                                <span class="card-text" th:text="${customer.header_addres.houseNumber}"></span>
+                            </div>
+
+                            <div>
+                                <span class="card-text" th:text="${customer.header_addres.city}"></span>
+                                <span class="card-text">-</span>
+                                <span class="card-text" th:text="${customer.header_addres.country}"></span>
+                            </div>
+                            <div>
+                                <span class="card-text" th:text="${customer.header_addres.state}"></span>
+                            </div>
+
+                            <br/>
+                            <a th:href="@{/customers/changeAddressHolder}" class="btn btn-primary" th:text="#{label.edit}">edit</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="#{label.customer.delivery}">Consegna</h5>
+                            <div>
+                                <span class="card-text" th:text="${customer.delivery_addres.firstname}"></span>
+                                <span class="card-text" th:text="${customer.delivery_addres.lastname}"></span>
+                            </div>
+                            <div>
+                                <span class="card-text" th:text="${customer.delivery_addres.street}"></span>
+                                <span class="card-text" th:text="${customer.delivery_addres.houseNumber}"></span>
+                            </div>
+                            <div>
+                                <span class="card-text" th:text="${customer.delivery_addres.city}"></span>
+                                <span class="card-text">-</span>
+                                <span class="card-text" th:text="${customer.delivery_addres.country}"></span>
+                            </div>
+                            <div>
+                                <span class="card-text" th:text="${customer.delivery_addres.state}"></span>
+                            </div>
+                            <!--  -->
+                            <br/>
+                            <a th:href="@{/customers/changeAddressDelivery}" class="btn btn-primary" th:text="#{label.edit}">edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/right_side :: right_side}">right side</div>
+        </div>
+    </div>
+</div>
+
+<!-- pie' pagina -->
+<div class="row">
+    <div class="col-lg-12">
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </div>
+</div>
+</div>
+</body>
+</html>

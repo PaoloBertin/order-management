@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+<div class="container-fluid p-0">
+
+    <!-- intestazione -->
+    <div th:replace="~{fragments/header :: header}">header</div>
+
+    <br/>
+
+    <!-- corpo centrale  -->
+    <div class="row">
+
+        <div class="col-lg-2">
+        </div>
+
+        <div class="col-lg-3">
+            <br/>
+            <h5>Login</h5>
+            <br/>
+            <form name="loginForm" th:object="${loginForm}" th:action="@{/login/authenticate}" method="post">
+                <div class="form-group">
+                    <label id="labelUsernameId" for="inputUsernameId" th:text="#{label.username}">username</label>
+                    <input type="text" name="username" class="form-control" id="inputUsernameId"/>
+                </div>
+
+                <div class="form-group">
+                    <label id="labelPasswordId" for="inputPasswordId" th:text="#{label.password}">password</label>
+                    <input type="password" name="password" class="form-control" id="inputPasswordId"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-right: 5px" th:text="#{label.send}"></button>
+            </form>
+        </div>
+
+        <div class="col-lg-7">
+        </div>
+    </div>
+
+    <!-- pie' pagina -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

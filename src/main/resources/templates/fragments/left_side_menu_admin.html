@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>eCompany</title>
+    </head>
+
+    <body>
+        <div th:fragment="left_side" style="align-content: left; margin-left: 15px;">
+            <br/>
+            <!-- <p class="sidebar-titolo" th:text="#{label.categories}"></p> -->
+            <br/>
+
+            <ul class="nav flex-column">
+                <li class="nav-item" th:each="category : ${categories}">
+                    <a class="nav-link active" th:href="@{/admin/catalog/{categoryId}/products(categoryId=${category.id})}">
+                        <span style="font-size: 1.4rem;" th:text="${category.name}"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </body>
+
+</html>

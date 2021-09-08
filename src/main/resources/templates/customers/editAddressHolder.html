@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+<div class="container-fluid p-0">
+
+    <!-- intestazione -->
+    <div th:replace="~{fragments/header :: header}">header</div>
+
+    <!-- corpo centrale  -->
+    <div class="row">
+        <div class="col-lg-2">
+            <div th:replace="~{fragments/left_side :: left_side}">left side</div>
+        </div>
+
+        <div class="col-lg-5">
+            <br/>
+            <h5 th:text="#{label.customer.holder_address}"></h5>
+            <br/>
+            <form name="editAddressForm" th:object="${addressForm}" th:attr="action=@{/customers/changeAddressesHolder}" th:method="post">
+                <input type="hidden" th:field="*{id}" id="id">
+                <input type="hidden" th:field="*{addressId}" id="addressId">
+                <div class="form-row">
+                    <div class="form-group col-xl-6">
+                        <label id="labelFirstname" for="inpuFirstname" th:text="#{label.customer.firstname}"></label>
+                        <input class="form-control" id="inpuFirstname" type="text" name="firstname" th:field="*{firstname}" />
+                    </div>
+
+                    <div class="form-group col-xl-6">
+                        <label id="labeLastname" for="inputLastname" th:text="#{label.customer.lastname}"></label>
+                        <input class="form-control" id="inputLastname" type="text" name="lastname" th:field="*{lastname}" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-xl-6">
+                        <label id="labelAddress" for="inputStreet" th:text="#{label.customer.street}"></label>
+                        <input class="form-control" id="inputStreet" type="text" name="street" th:field="*{street}"/>
+                    </div>
+                    <div class="form-group col-xl-6">
+                        <label id="labelHouseNumber" for="inputHouseNumber" th:text="#{label.customer.house_number}"></label>
+                        <input class="form-control" id="inputHouseNumber" type="text" name="city" th:field="*{houseNumber}"/>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-xl-6">
+                        <label id="labelCity" for="inputCity" th:text="#{label.customer.city}"></label>
+                        <input class="form-control" id="inputCity" type="text" name="city" th:field="*{city}" />
+                    </div>
+                    <div class="form-group col-xl-6">
+                        <label id="labelStreet" for="inputCountry" th:text="#{label.customer.country}"></label>
+                        <input class="form-control" id="inputCountry" type="text" name="country" th:field="*{country}"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-xl-6">
+                        <label id="labelState" for="inputState" th:text="#{label.customer.state}"></label>
+                        <input class="form-control" id="inputState" type="text" name="state" th:field="*{state}"/>
+                    </div>
+                </div>
+
+                <br/>
+                <button type="submit" class="btn btn-primary" style="margin-right: 5px" th:text="#{label.send}"></button>
+                <button type="reset" class="btn btn-primary" style="margin-left: 5px" th:text="#{label.reset}"></button>
+            </form>
+            <br/>
+        </div>
+
+        <div class="col-lg-5">
+            <div th:replace="~{fragments/right_side :: right_side}">right side</div>
+        </div>
+    </div>
+
+    <!-- pie' pagina -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
