@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
 @RequestMapping("/")
@@ -18,13 +17,15 @@ public class WelcomeController {
     @GetMapping
     public String homePage(Model uiModel) {
 
-        uiModel.addAttribute("cart", cart);
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "welcome";
     }
 
     @GetMapping("/delivery")
-    public String deliveryPage() {
+    public String deliveryPage(Model uiModel) {
+
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "delivery";
     }

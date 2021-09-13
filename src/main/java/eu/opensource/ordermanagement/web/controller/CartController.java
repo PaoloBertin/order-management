@@ -20,12 +20,6 @@ public class CartController {
 
     private final CatalogService catalogService;
 
-    @ModelAttribute
-    public void addAttributes(Model uiModel) {
-
-        uiModel.addAttribute("cart", cart);
-    }
-
     @GetMapping("/add")
     public String addProductToCart(@RequestParam String productCode) {
 

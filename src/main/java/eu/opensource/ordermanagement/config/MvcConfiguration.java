@@ -3,8 +3,8 @@ package eu.opensource.ordermanagement.config;
 import eu.opensource.ordermanagement.domain.Cart;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -35,8 +35,9 @@ public class MvcConfiguration implements WebMvcConfigurer {
     }
 
     @Bean()
-    @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @SessionScope
     public Cart cart() {
+//        @SessionScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 
         return new Cart();
     }

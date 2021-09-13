@@ -23,12 +23,6 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @ModelAttribute
-    public void addAttributes(Model uiModel) {
-
-        uiModel.addAttribute("cart", cart);
-    }
-
     @GetMapping("/customers/{orderId}")
     public String viewOrderById(@PathVariable Long orderId, Model uiModel) {
 

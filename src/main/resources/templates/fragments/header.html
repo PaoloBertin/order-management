@@ -49,10 +49,7 @@
                         <span style="font-size: 2rem;">
                             <i class="fas fa-shopping-cart"></i>
                         </span>
-                        <span class="badge badge-primary" style="font-size: 1em;"
-                              th:if="${cart != null}"
-                              th:text="${cart.numberOfItems}">
-                        </span>
+                        <span class="badge badge-primary" style="font-size: 1em;" th:text="${itemsInCart}"></span>
                     </a>
                 </li>
             </ul>

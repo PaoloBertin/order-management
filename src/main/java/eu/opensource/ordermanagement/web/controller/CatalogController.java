@@ -9,7 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Locale;
@@ -28,11 +31,6 @@ public class CatalogController {
 
     private final Cart cart;
 
-    @ModelAttribute
-    public void addAttributes(Model uiModel) {
-        uiModel.addAttribute("cart", cart);
-    }
-
     @GetMapping("/{categoryId}")
     public String viewProductByCategory(@PathVariable Long categoryId, Model uiModel) {
 
@@ -49,6 +47,7 @@ public class CatalogController {
 
         List<Product> products = catalogService.getProductsByCategory(categoryId);
         uiModel.addAttribute("products", products);
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "catalog/productsList";
     }
