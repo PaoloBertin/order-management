@@ -14,23 +14,94 @@
     <!-- intestazione -->
     <div th:replace="~{fragments/header :: header}">header</div>
 
-    <!-- corpo centrale -->
+    <!-- parte centrale -->
+    <br/>
+    <h4 class="text-center" th:text="#{label.welcome}">home page</h4>
+    <br/>
     <div class="row">
         <!-- left side -->
-        <div class="col-lg-3">
+        <div class="col-lg-1">
             <div th:replace="~{fragments/left_side :: left_side}">left side</div>
         </div>
 
-        <div class="col-lg-6">
-            <br/>
-            <h4 th:text="#{label.welcome}">home page</h4>
-            <br/>
+        <div class="col-lg-5">
+            <h4>Asporto & Friggitoria</h4>
+            <h5>Tel. +XX XXX XXX XXXX</h5>
 
-            Consegna
+            <p>Rispondiamo al telefono dalle ore 17:00</p>
+            <p>Orari di apertura:</p>
+            <p>la consegna termina alle ore 22.30</p>
+            <table>
+                <tr>
+                    <td>Lunedì</td>
+                    <td>18:30</td>
+                    <td>-</td>
+                    <td>00:00</td>
+                </tr>
+                <tr>
+                    <td>Martedì</td>
+                    <td>CHIUSO</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Mercoledì</td>
+                    <td>18:30</td>
+                    <td>-</td>
+                    <td>00:00</td>
+                </tr>
+                <tr>
+                    <td>Giovedì</td>
+                    <td>18:30</td>
+                    <td>-</td>
+                    <td>00:00</td>
+                </tr>
+                <tr>
+                    <td>Venerdì</td>
+                    <td>18:30</td>
+                    <td>-</td>
+                    <td>00:00</td>
+                </tr>
+                <tr>
+                    <td>Sabato</td>
+                    <td>18:30</td>
+                    <td>-</td>
+                    <td>00:00</td>
+                </tr>
+                <tr>
+                    <td>Domenica</td>
+                    <td>18:30</td>
+                    <td>-</td>
+                    <td>00:00</td>
+                </tr>
+            </table>
+            <br/>
+            <h5>Parcheggi:</h5>
+            <p>Capolinea del tram “VigoPontevigodarzere” – 2 min. a piedi</p>
+            <p>Parcheggio supermercato Olì di Pontevigodarzere – 2 min. a piedi</p>
+            <p>Lungo via Pontevigodarzere e nel parcheggio di via Zanon – 5 min. a piedi</p>
+
+        </div>
+        <div class="col-lg-5">
+            <h4>Zone di consegna</h4>
+
+            <p>La consegna nelle seguenti zone costa 1€ a pizza.</p>
+            <p>Zone di consegna:</p>
+            <ul>
+                <li>Arcella</li>
+                <li>Pontevigodarzere</li>
+                <li>Altichiero</li>
+                <li>Vigodarzere</li>
+                <li>Cadoneghe</li>
+                <li>Mortise</li>
+                <li>Torre</li>
+            </ul>
+            <p>
+                È possibile consegnare anche in zone “extra” con un minimo d’ordine di € 25,00.
+                In questo caso il costo della consegna viene calcolato direttamente al telefono al momento dell’ordine.</p>
         </div>
 
-        <!-- right side -->
-        <div class="col-lg-3">
+        <div class="col-lg-1">
             <div th:replace="~{fragments/right_side :: right_side}">right side</div>
         </div>
     </div>
