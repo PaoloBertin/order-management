@@ -3,13 +3,6 @@ INSERT INTO role(id, name)
            (2, 'ROLE_ADMIN')
     ;
 
--- INSERT INTO customers (id, firstname, lastname, username, password)
---     VALUES (1, 'user',     'users',   'user@email.com',    '{noop}user'),
---            (2, 'admin',    'admins',  'admin@email.com',   '{noop}admin'),
---            (3, 'mario',    'rossi',   'rossi@email.com',   '{noop}rossi'),
---            (4, 'giuseppe', 'ferrari', 'ferrari@email.com', '{noop}ferrari')
---     ;
-
 INSERT INTO addresses(id, city, street, house_number, zip_code, country, state, firstname, lastname)
     VALUES(  1, 'Battaglia Terme',   'Via A. Ecompany',  '8', '35041', 'Padova', 'Italy',     'User',    'User'),
           (  2, 'Battaglia Terme',   'Via U. Ecompany',  '7', '35041', 'Padova', 'Italy',    'Admin',   'Admin'),
