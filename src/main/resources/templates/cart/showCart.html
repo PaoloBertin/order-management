@@ -2,8 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
       th:with="lang=${#locale.language}"
-      th:lang="${lang}"
->
+      th:lang="${lang}">
 
 <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 
@@ -44,13 +43,6 @@
                         <td class="text-right" th:text="${#numbers.formatDecimal(item.key.price, 0, 'COMMA', 2, 'POINT')}  + ' &euro;'"></td>
                         <td class="text-right" th:text="${item.value}"></td>
                         <td class="text-right" th:text="${#numbers.formatDecimal((item.key.price * item.value),  0, 'COMMA', 2, 'POINT')} + ' &euro;'"></td>
-                        <!--
-                        <td>
-                            <a th:href="@{'/cart/remove/' + ${item.key.productCode}}">
-                                <span class="fa fa-trash fa-lg">iiii</span>
-                            </a>
-                        </td>
-                        -->
                         <td>&nbsp;</td>
                     </tr>
                     </tbody>

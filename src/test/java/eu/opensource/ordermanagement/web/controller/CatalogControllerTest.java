@@ -7,10 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -30,5 +29,14 @@ class CatalogControllerTest {
            .andExpect(MockMvcResultMatchers.model()
                                            .attribute("products", hasSize(9)))
         ;
+    }
+
+    @Test
+    void viewProductById() throws Exception {
+
+        mvc.perform(get(url + "/categories/{productId}", 1))
+           .andExpect(view().name("catalog/productView"))
+           .andExpect(model().attribute("product", hasProperty("name", equalTo("Florinda"))))
+           .andExpect(status().isOk());
     }
 }

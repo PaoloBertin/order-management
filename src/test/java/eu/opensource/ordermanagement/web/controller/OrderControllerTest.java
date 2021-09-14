@@ -20,6 +20,8 @@ class OrderControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    private String url = "/orders";
+
     @Sql({"/schema-h2.sql", "/data-h2.sql"})
     @Test
     void viewOrderByIdTest() throws Exception {
@@ -59,10 +61,24 @@ class OrderControllerTest {
     @WithUserDetails(value = "admin@email.com")
     void viewOrdersByCustomerTest() throws Exception {
 
-        mvc.perform((get("/orders/{customerId}", 1L)))
+        mvc.perform(get("/orders/{customerId}", 1L))
            .andExpect(status().isOk())
            .andExpect(model().attribute("orders", IsCollectionWithSize.hasSize(4)))
            .andExpect(view().name("orders/ordersList"))
         ;
+    }
+
+    @Sql({"/schema-h2.sql", "/data-h2.sql"})
+    @Test
+    void viewOrder() throws Exception {
+
+        mvc.perform(get(url + "/checkout"))
+           .andExpect(status().isOk());
+    }
+
+    @Sql({"/schema-h2.sql", "/data-h2.sql"})
+    @Test
+    void saveOrder() throws Exception {
+
     }
 }

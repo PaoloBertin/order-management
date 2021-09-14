@@ -12,7 +12,7 @@ public class Cart implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Map<Product, Integer> cartItems = new HashMap<>();
+    private final Map<Product, Integer> cartItems = new HashMap<>();
 
     private BigDecimal totalAmount = BigDecimal.ZERO;
 
@@ -23,11 +23,11 @@ public class Cart implements Serializable {
 
     public int getNumberOfItems() {
 
-        int n = 0;
+        int numberOfElements = 0;
         for (Map.Entry<Product, Integer> entry : cartItems.entrySet()) {
-            n = n + entry.getValue();
+            numberOfElements += entry.getValue();
         }
-        return n;
+        return numberOfElements;
     }
 
     public BigDecimal getTotalAmount() {
