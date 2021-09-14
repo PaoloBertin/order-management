@@ -38,7 +38,7 @@ public class Order implements Serializable {
     @JoinTable(name = "order_line_item",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "line_item_id"))
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<LineItem> lineItems = new ArrayList<>();
 
 

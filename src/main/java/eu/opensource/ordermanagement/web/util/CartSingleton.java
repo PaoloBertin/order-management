@@ -5,16 +5,15 @@ import eu.opensource.ordermanagement.domain.Product;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
 
 
 @Getter
 public class CartSingleton {
 
-    private Map<Product, Integer> cartItems = new HashMap<>();
+    private final Map<Product, Integer> cartItems;
 
-    private BigDecimal totalAmount = BigDecimal.ZERO;
+    private final BigDecimal totalAmount;
 
     public CartSingleton(Cart cart) {
 

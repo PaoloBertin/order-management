@@ -23,7 +23,12 @@ public class OrderDto {
 
     private List<LineItem> lineItems = new ArrayList<>();
 
-    public OrderDto(Long order_id, LocalDateTime orderDate, BigDecimal totalAmount, Long customer_id, String customerName, List<LineItem> lineItems) {
+    public OrderDto(Long order_id,
+                    LocalDateTime orderDate,
+                    BigDecimal totalAmount,
+                    Long customer_id,
+                    String customerName,
+                    List<LineItem> lineItems) {
 
         this.order_id = order_id;
         this.orderDate = orderDate;

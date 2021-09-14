@@ -1,20 +1,23 @@
 package eu.opensource.ordermanagement.web.controller;
 
-import eu.opensource.ordermanagement.domain.*;
+import eu.opensource.ordermanagement.domain.Cart;
+import eu.opensource.ordermanagement.domain.Customer;
 import eu.opensource.ordermanagement.service.OrderService;
 import eu.opensource.ordermanagement.service.impl.dto.OrderDto;
+import eu.opensource.ordermanagement.web.util.CartSingleton;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-@RequestMapping
+@RequestMapping("/orders")
 @Controller
 public class OrderController {
 
@@ -22,7 +25,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @GetMapping("/customers/{orderId}")
+    //    @GetMapping("/{orderId}")
     public String viewOrderById(@PathVariable Long orderId, Model uiModel) {
 
         OrderDto orderDto = orderService.getOrderById(orderId);
@@ -32,17 +35,7 @@ public class OrderController {
         return "orders/orderView";
     }
 
-    @GetMapping("/customers/orders")
-    public String viewAllOrders(Model uiModel) {
-
-        List<OrderDto> orders = orderService.getAllOrders();
-
-        uiModel.addAttribute("orders", orders);
-
-        return "orders/ordersList";
-    }
-
-    @GetMapping("/{customerId}/orders")
+    @GetMapping("/{customerId}")
     public String viewOrdersByCustomer(Authentication authentication, Model uiModel) {
 
         Customer customer = (Customer) authentication.getPrincipal();
@@ -55,18 +48,20 @@ public class OrderController {
         return "orders/ordersList";
     }
 
-    @GetMapping("/customers/checkout")
+    @GetMapping("/checkout")
     public String viewOrder(Authentication authentication, Model uiModel) {
 
         Customer customer = (Customer) authentication.getPrincipal();
 
         uiModel.addAttribute("customer", customer);
+        uiModel.addAttribute("cart", new CartSingleton(cart));
+//        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "orders/orderCheckout";
     }
 
-    @GetMapping
-    public String saveOrder(Authentication authentication){
+    @PostMapping
+    public String saveOrder(Authentication authentication) {
 
         orderService.saveOrder();
         cart.clearCart();
