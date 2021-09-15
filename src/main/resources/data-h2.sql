@@ -39,30 +39,35 @@ INSERT INTO categories(id, name)
     VALUES(1, 'Specialità'),
           (2, 'Pizze'),
           (3, 'Birre'),
-          (4, 'Bar')
+          (4, 'Bar'),
+          (5, 'Bibite')
     ;
 
 INSERT INTO products(id, name, product_code, price, category_id, description)
-    VALUES( 1, 'Florinda',       'P0001',  9.00, 1, 'Focaccia bianca all’olio Evo e origano di Sicilia. Fuori cottura: rosmarino, bresaola, rucolina selvatica e pomodorini freschi.'),
-          ( 2, 'La Ravelllese',  'P0002', 10.00, 1, 'Conserva di pomodorino giallo Corbarino DOP, mozzarella di bufala di Battipaglia DOP, pancetta stufata croccante e origano di Sicilia. Fuori cottura: pepe nero, pecorino grattugiato fresco.'),
-          ( 3, 'A Burrat',       'P0003', 11.00, 1, 'Conserva di pomodoro San Marzano DOP. Fuori cottura: burrata di Puglia 100g, Crudo di Sauris, pomodorini secchi, rucolina selvatica.'),
-          ( 4, 'Marinara',       'P0004',  5.00, 2, 'Pomodoro, aglio, basilico fresco, olio Evo, origano di Sicilia'),
-          ( 5, 'Margherita',     'P0005',  6.00, 2, 'Pomodoro, mozzarella, basilico fresco, olio Evo.'),
-          ( 6, 'Cotto e Funghi', 'P0006',  7.50, 2, 'Pomodoro, mozzarella, funghi champignon, prosciutto cotto al naturale.'),
-          ( 7, 'Diavola',        'P0007',  7.00, 2, 'Pomodoro, mozzarella, salamino piccante, basilico fresco.'),
-          ( 8, 'Caprcciosa',     'P0008',  8.00, 2, 'Pomodoro, mozzarella, funghi champignon, carciofi, prosciutto cotto naturale.'),
-          ( 9, 'Viennese',       'P0009',  7.00, 2, 'Pomodoro, mozzarella, wurstel.'),
-          (10, 'Ortolana',       'P0010',  7.00, 2, 'Pomodoro, mozzarella, *melanzane, *zucchine, *peperoni.'),
-          (11, 'Formaggi',       'P0011',  7.50, 2, 'Mozzarella, brie, gorgonzola. Fuori cottura: Grana Padano e Pecorino grattugiati freschi'),
-          (12, 'Speck e Brie',   'P0012',  7.50, 2, 'Pomodoro, mozzarella, brie e speck'),
-          (13, 'Jattura 33cl',   'P0013',  4.50, 3, 'Ramata carica - percentuale di malto wishky affumicato e caramello,'),
-          (14, 'Paliat 33cl',    'P0014',  4.50, 3, 'Nera - 9 sfumature di malti, 18 settimane di maturazione, impatto corposo e maltato'),
-          (15, 'Guerrilla 40cl', 'P0015',  6.00, 3, 'IPA - Secca con finale amaro e persistente.'),
-          (16, 'Audace 75cl',    'P0016', 13.00, 3, 'Chiara forte, toni agrumati, sapore secco e deciso'),
-          (17, 'Nebra 75cl',     'P0017', 13.00, 3, 'Ambrata con aromi floreali, toni dolci e leggeri'),
-          (18, 'Caffè',          'P0018',  1.50, 4, ''),
-          (19, 'Limoncello',     'P0019',  3.00, 4, ''),
-          (20, 'Amaro Sambuca',  'P0020',  3.50, 4, '')
+    VALUES( 1, 'Florinda',        'P0001',  9.00, 1, 'Focaccia bianca all’olio Evo e origano di Sicilia. Fuori cottura: rosmarino, bresaola, rucolina selvatica e pomodorini freschi.'),
+          ( 2, 'La Ravelllese',   'P0002', 10.00, 1, 'Conserva di pomodorino giallo Corbarino DOP, mozzarella di bufala di Battipaglia DOP, pancetta stufata croccante e origano di Sicilia. Fuori cottura: pepe nero, pecorino grattugiato fresco.'),
+          ( 3, 'A Burrat',        'P0003', 11.00, 1, 'Conserva di pomodoro San Marzano DOP. Fuori cottura: burrata di Puglia 100g, Crudo di Sauris, pomodorini secchi, rucolina selvatica.'),
+          ( 4, 'Marinara',        'P0004',  5.00, 2, 'Pomodoro, aglio, basilico fresco, olio Evo, origano di Sicilia'),
+          ( 5, 'Margherita',      'P0005',  6.00, 2, 'Pomodoro, mozzarella, basilico fresco, olio Evo.'),
+          ( 6, 'Cotto e Funghi',  'P0006',  7.50, 2, 'Pomodoro, mozzarella, funghi champignon, prosciutto cotto al naturale.'),
+          ( 7, 'Diavola',         'P0007',  7.00, 2, 'Pomodoro, mozzarella, salamino piccante, basilico fresco.'),
+          ( 8, 'Caprcciosa',      'P0008',  8.00, 2, 'Pomodoro, mozzarella, funghi champignon, carciofi, prosciutto cotto naturale.'),
+          ( 9, 'Viennese',        'P0009',  7.00, 2, 'Pomodoro, mozzarella, wurstel.'),
+          (10, 'Ortolana',        'P0010',  7.00, 2, 'Pomodoro, mozzarella, *melanzane, *zucchine, *peperoni.'),
+          (11, 'Formaggi',        'P0011',  7.50, 2, 'Mozzarella, brie, gorgonzola. Fuori cottura: Grana Padano e Pecorino grattugiati freschi'),
+          (12, 'Speck e Brie',    'P0012',  7.50, 2, 'Pomodoro, mozzarella, brie e speck'),
+          (13, 'Jattura 33cl',    'P0013',  4.50, 3, 'Ramata carica - percentuale di malto wishky affumicato e caramello,'),
+          (14, 'Paliat 33cl',     'P0014',  4.50, 3, 'Nera - 9 sfumature di malti, 18 settimane di maturazione, impatto corposo e maltato'),
+          (15, 'Guerrilla 40cl',  'P0015',  6.00, 3, 'IPA - Secca con finale amaro e persistente.'),
+          (16, 'Audace 75cl',     'P0016', 13.00, 3, 'Chiara forte, toni agrumati, sapore secco e deciso'),
+          (17, 'Nebra 75cl',      'P0017', 13.00, 3, 'Ambrata con aromi floreali, toni dolci e leggeri'),
+          (18, 'Caffè',           'P0018',  1.50, 4, ''),
+          (19, 'Limoncello',      'P0019',  3.00, 4, ''),
+          (20, 'Amaro Sambuca',   'P0020',  3.50, 4, ''),
+          (21, 'Acqua Naturale',  'P0021',  2.00, 5, 'Acqua Panna – ½ litro'),
+          (22, 'Acqua Frizzante', 'P0022',  2.00, 5, 'San Pellegrino – ½ litro'),
+          (23, 'Coca Cola',       'P0023',  3.00, 5, '0,33cl in vetro'),
+          (34, 'The alla pesca',  'P0024',  3.50, 5, '0,35cl in vetro')
     ;
 
 INSERT INTO line_items(id, product_id, quantity)
