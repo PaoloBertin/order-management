@@ -130,7 +130,11 @@
                 </tfoot>
             </table>
             <br/>
-            <a class="btn btn-primary" th:href="@{/orders/}" role="button" th:text="#{label.order}">order</a>
+            <form th:action="@{/orders/checkout}" th:method="post">
+                <input type="hidden" name="name" value="value" />
+                <!-- <a onclick="this.parentNode.submit();">click here</a>  -->
+                <a class="btn btn-primary" onclick="this.parentNode.submit();">order</a>
+            </form>
         </div>
 
         <div class="col-lg-4">

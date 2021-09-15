@@ -60,7 +60,7 @@ public class OrderController {
         return "orders/orderCheckout";
     }
 
-    @PostMapping
+    @PostMapping("/checkout")
     public String saveOrder(Authentication authentication) {
 
         orderService.saveOrder();
