@@ -1,5 +1,6 @@
 package eu.opensource.ordermanagement.web.controller;
 
+import eu.opensource.ordermanagement.domain.Cart;
 import eu.opensource.ordermanagement.domain.Category;
 import eu.opensource.ordermanagement.domain.Product;
 import eu.opensource.ordermanagement.service.CatalogService;
@@ -29,6 +30,8 @@ public class CatalogAdminController {
 
     private final MessageSource messageSource;
 
+    private final Cart cart;
+
     @GetMapping("/categories/products")
     public String viewCreateProductForm(@RequestParam String form, Model uiModel) {
 
@@ -37,6 +40,7 @@ public class CatalogAdminController {
 
         ProductForm productForm = new ProductForm();
         uiModel.addAttribute("productForm", productForm);
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "catalog/createProduct";
     }
@@ -87,6 +91,7 @@ public class CatalogAdminController {
 
         uiModel.addAttribute("categories", categories);
         uiModel.addAttribute("products", products);
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "catalog/productsListAdmin";
     }
@@ -108,6 +113,7 @@ public class CatalogAdminController {
             uiModel.addAttribute("productForm", productForm);
             List<Category> categories = catalogService.getAllCategories();
             uiModel.addAttribute("categories", categories);
+            uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
             return "catalog/editProduct";
         } else {
             return "catalog/productsListAdmin";
