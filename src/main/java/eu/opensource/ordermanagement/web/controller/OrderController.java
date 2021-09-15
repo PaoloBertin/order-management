@@ -44,6 +44,7 @@ public class OrderController {
         List<OrderDto> orders = orderService.getOrderByCustomer(customerId);
 
         uiModel.addAttribute("orders", orders);
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "orders/ordersList";
     }
