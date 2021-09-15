@@ -72,7 +72,7 @@ public class CatalogAdminController {
     }
 
     @GetMapping("/{categoryId}/products")
-    public String viewProducts(@PathVariable Long categoryId, Model uiModel) {
+    public String viewProductsByCategory(@PathVariable Long categoryId, Model uiModel) {
 
         List<Category> categories = catalogService.getAllCategories();
         List<Product> products = catalogService.getProductsByCategory(categoryId);
@@ -92,7 +92,7 @@ public class CatalogAdminController {
     }
 
     @GetMapping("/categories/{productId}")
-    public String editProductForm(@PathVariable Long productId, Model uiModel) {
+    public String viewEditProductForm(@PathVariable Long productId, Model uiModel) {
 
         ProductForm productForm = new ProductForm();
         Optional<Product> optional = catalogService.getProductById(productId);
@@ -142,6 +142,7 @@ public class CatalogAdminController {
 
         message = new Message("success", messageSource.getMessage("message.product_save_success", new Object[]{}, locale));
         redirectAttributes.addFlashAttribute("message", message);
+
         return "redirect:/";
     }
 }
