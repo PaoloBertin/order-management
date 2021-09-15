@@ -50,6 +50,12 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
+    public void deleteProduct(Product product) {
+
+        productRepository.delete(product);
+    }
+
+    @Override
     public Optional<Category> getCategoryById(Long categoryId) {
 
         return categoryRepository.findById(categoryId);

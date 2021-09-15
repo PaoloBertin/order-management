@@ -26,7 +26,7 @@
             <h5 th:text="#{label.product.edit}">edit product</h5>
             <br/>
 
-            <form name="editProductForm" th:object="${productForm}" th:action="@{/admin/catalog/all/products}" th:method="put">
+            <form name="editProductForm" th:object="${productForm}" th:action="@{/admin/catalog/categories/products}" th:method="put">
 
                 <!--  <input type="hidden" th:field="*{categoryId}"/> -->
                 <input type="hidden" th:field="*{id}"/>

@@ -36,7 +36,9 @@
                     <th th:text="#{label.product.name}"></th>
                     <th th:text="#{label.product.code}"></th>
                     <th th:text="#{label.edit}">edit</th>
+                    <!--
                     <th th:text="#{label.delete}">delete</th>
+                    -->
                 </tr>
                 </thead>
                 <tbody>
@@ -44,18 +46,20 @@
                     <td th:text="${product.name}">name</td>
                     <td th:text="${product.productCode}">code</td>
                     <td>
-                         <a th:href="@{/admin/catalog/all/{productId}(productId=${product.id})}">
+                         <a th:href="@{/admin/catalog/categories/{productId}(productId=${product.id})}">
                             <i class="fa fa-edit fa-lg"></i>
                          </a>
                     </td>
+                    <!--
                     <td>
-                        <form th:action="@{'/admin/products/'}" th:method="delete">
+                        <form th:action="@{/admin/catalog}" th:method="delete">
                             <input type="hidden" name="id" th:value="${product.id}"/>
                             <button class="btn">
                                 <i class="fa fa-trash fa-lg"></i>
                             </button>
                         </form>
                     </td>
+                    -->
                 </tr>
                 </tbody>
             </table>

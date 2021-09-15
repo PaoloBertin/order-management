@@ -18,6 +18,8 @@ public interface CatalogService {
 
     Product saveProduct(Product product);
 
+    void deleteProduct(Product product);
+
     Optional<Category> getCategoryById(Long categoryId);
 
     Category getCategoryByName(String categoryName);

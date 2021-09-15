@@ -145,4 +145,16 @@ public class CatalogAdminController {
 
         return "redirect:/";
     }
+
+    @DeleteMapping
+    public String deleteProduct(@RequestParam Long id) {
+
+        Product product = catalogService.getProductById(id)
+                                        .orElseThrow();
+
+        catalogService.deleteProduct(product);
+
+        return "redirect:/";
+    }
+
 }
