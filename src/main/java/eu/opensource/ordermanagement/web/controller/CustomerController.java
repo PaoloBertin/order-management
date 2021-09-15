@@ -1,5 +1,6 @@
 package eu.opensource.ordermanagement.web.controller;
 
+import eu.opensource.ordermanagement.domain.Cart;
 import eu.opensource.ordermanagement.domain.Customer;
 import eu.opensource.ordermanagement.service.CustomerService;
 import eu.opensource.ordermanagement.web.util.AddressForm;
@@ -28,6 +29,8 @@ public class CustomerController {
 
     private final MessageSource messageSource;
 
+    private final Cart cart;
+
     private final CustomerService customerService;
 
     @GetMapping
@@ -41,6 +44,7 @@ public class CustomerController {
         customerForm.setUsername(customer.getUsername());
 
         uiModel.addAttribute("customerForm", customerForm);
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "customers/customerView";
     }
@@ -88,6 +92,7 @@ public class CustomerController {
     public String changePasswordForm(Model uiModel) {
 
         uiModel.addAttribute("passwordForm", new PasswordForm());
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "customers/changePassword";
     }
@@ -133,6 +138,7 @@ public class CustomerController {
 
         Customer customer = (Customer) authentication.getPrincipal();
         uiModel.addAttribute("customer", customer);
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "customers/changeAddresses";
     }
@@ -154,6 +160,7 @@ public class CustomerController {
         addressForm.setState(customer.getHeader_addres().getState());
 
         uiModel.addAttribute("addressForm", addressForm);
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "customers/editAddressHolder";
     }
@@ -213,6 +220,7 @@ public class CustomerController {
         addressForm.setState(customer.getDelivery_addres().getState());
 
         uiModel.addAttribute("addressForm", addressForm);
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "customers/editAddressDelivery";
     }
