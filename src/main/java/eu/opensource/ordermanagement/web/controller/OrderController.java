@@ -55,7 +55,7 @@ public class OrderController {
 
         uiModel.addAttribute("customer", customer);
         uiModel.addAttribute("cart", new CartSingleton(cart));
-//        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
+        uiModel.addAttribute("itemsInCart", cart.getNumberOfItems());
 
         return "orders/orderCheckout";
     }
