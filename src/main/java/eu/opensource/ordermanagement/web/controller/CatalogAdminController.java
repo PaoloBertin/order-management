@@ -30,7 +30,7 @@ public class CatalogAdminController {
     private final MessageSource messageSource;
 
     @GetMapping("/categories/products")
-    public String createProductForm(@RequestParam String form, Model uiModel) {
+    public String viewCreateProductForm(@RequestParam String form, Model uiModel) {
 
         List<Category> categories = catalogService.getAllCategories();
         uiModel.addAttribute("categories", categories);
@@ -61,7 +61,7 @@ public class CatalogAdminController {
         product.setDescription(productForm.getDescription());
         product.setCategory(category);
 
-        log.info("Product: {}", product);
+        log.debug("Product: {}", product);
 
         // rende persistenti dati prodotto
         product = catalogService.saveProduct(product);

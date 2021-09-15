@@ -29,7 +29,6 @@ class OrderControllerTest {
     void viewOrderByIdTest() throws Exception {
 
         mvc.perform(get(url + "/{orderId}", 1L).with(httpBasic("rossi@email.com", "rossi")))
-//        mvc.perform(get(url + "/{orderId}", 1L).with(httpBasic("ferrari@email.com", "ferrari"))) TODO un utente puo' accedere agli ordini di un altro utente !!
            .andExpect(status().isOk())
            .andExpect(model().attribute("order", hasProperty("customerName", equalTo("Mario Rossi"))))
            .andExpect(model().attribute("order", hasProperty("lineItems", IsCollectionWithSize.hasSize(2))))
