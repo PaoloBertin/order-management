@@ -1,5 +1,6 @@
 package eu.opensource.ordermanagement.web.controller;
 
+import eu.opensource.ordermanagement.domain.Order;
 import org.hamcrest.collection.IsCollectionWithSize;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -9,9 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasProperty;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
@@ -60,5 +63,8 @@ class OrderControllerTest {
     @Test
     void saveOrderTest() throws Exception {
 
+        Order order = new Order();
+
+        mvc.perform(post(url + "checkout"));
     }
 }
