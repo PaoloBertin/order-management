@@ -23,7 +23,6 @@ class OrderControllerTest {
 
     private final String url = "/orders";
 
-    @Disabled("metodo da togliere")
     @Sql({"/schema-h2.sql", "/data-h2.sql"})
     @Test
     void viewOrderByIdTest() throws Exception {
