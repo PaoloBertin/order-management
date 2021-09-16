@@ -25,7 +25,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    //    @GetMapping("/{orderId}")
+    @GetMapping("/{orderId}/customers")
     public String viewOrderById(@PathVariable Long orderId, Model uiModel) {
 
         OrderDto orderDto = orderService.getOrderById(orderId);
