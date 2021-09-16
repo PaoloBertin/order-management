@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.*;
@@ -21,6 +22,7 @@ class CatalogAdminControllerTest {
 
     private final String url = "/admin/catalog";
 
+    @Sql({"/schema-h2.sql", "/data-h2.sql"})
     @Test
     void viewCreateProductFormTest() throws Exception {
 
@@ -31,6 +33,7 @@ class CatalogAdminControllerTest {
            .andExpect(status().isOk());
     }
 
+    @Sql({"/schema-h2.sql", "/data-h2.sql"})
     @Test
     void createProductTest() throws Exception {
 
@@ -42,6 +45,7 @@ class CatalogAdminControllerTest {
            .andExpect(redirectedUrl("/"));
     }
 
+    @Sql({"/schema-h2.sql", "/data-h2.sql"})
     @Test
     void viewProductsByCategoryTest() throws Exception {
 
@@ -54,6 +58,7 @@ class CatalogAdminControllerTest {
         ;
     }
 
+    @Sql({"/schema-h2.sql", "/data-h2.sql"})
     @Test
     void viewEditProductFormTest() throws Exception {
 
@@ -64,6 +69,7 @@ class CatalogAdminControllerTest {
         ;
     }
 
+    @Sql({"/schema-h2.sql", "/data-h2.sql"})
     @Test
     void editProductTest() throws Exception {
 
