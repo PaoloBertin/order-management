@@ -40,8 +40,12 @@
                     <input class="form-control" id="inputEmail" type="text" name="username" th:field="*{username}"/>
                 </div>
                 <div class="form-group">
-                    <label id="labelPassword" for="inputPassword" th:text="#{label.password}"></label>
-                    <input class="form-control" id="inputPassword" type="password" name="password"/>
+                    <label id="labelPassword1" for="inputPassword1" th:text="#{label.password}"></label>
+                    <input class="form-control" id="inputPassword1" type="password" name="password1"/>
+                </div>
+                <div class="form-group">
+                    <label id="labelPassword2" for="inputPassword2" th:text="#{label.password}"></label>
+                    <input class="form-control" id="inputPassword2" type="password" name="password2"/>
                 </div>
                 <br/>
                 <button type="submit" class="btn btn-primary" style="margin-right: 5px" th:text="#{label.send}"></button>

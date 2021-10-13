@@ -22,6 +22,10 @@ INSERT INTO contacts(id, email, cellular, landline_phone)
     ;
 
 INSERT INTO customers (id, firstname, lastname, username, password, header_addres_id, delivery_addres_id)
+--    VALUES (1, 'User',     'User',    'user@email.com',    '{noop}user',    1, 5),
+--           (2, 'Admin',    'Admin',   'admin@email.com',   '{noop}admin',   2, 6),
+--           (3, 'Mario',    'Rossi',   'rossi@email.com',   '{noop}rossi',   3, 7),
+--           (4, 'Giuseppe', 'Ferrari', 'ferrari@email.com', '{noop}ferrari', 4, 8)
     VALUES (1, 'User',     'User',    'user@email.com',    'user',    1, 5),
            (2, 'Admin',    'Admin',   'admin@email.com',   'admin',   2, 6),
            (3, 'Mario',    'Rossi',   'rossi@email.com',   'rossi',   3, 7),

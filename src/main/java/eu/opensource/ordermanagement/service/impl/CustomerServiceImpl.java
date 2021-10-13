@@ -4,6 +4,8 @@ import eu.opensource.ordermanagement.domain.Customer;
 import eu.opensource.ordermanagement.domain.Role;
 import eu.opensource.ordermanagement.repository.CustomerRepository;
 import eu.opensource.ordermanagement.service.CustomerService;
+import eu.opensource.ordermanagement.service.RoleService;
+import eu.opensource.ordermanagement.web.util.SignupForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,6 +26,10 @@ import java.util.Optional;
 public class CustomerServiceImpl implements CustomerService, UserDetailsService {
 
     private final CustomerRepository customerRepository;
+
+    private final RoleService roleService;
+
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Optional<Customer> getCustomerById(Long customerId) {
@@ -46,6 +53,36 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
     public Customer saveCustomer(Customer customer) {
 
         return customerRepository.save(customer);
+    }
+
+    @Override
+    public Customer registrationCustomer(SignupForm signupForm) {
+
+        String encodedPassword = passwordEncoder.encode(signupForm.getPassword1());
+
+        // crea nuovo utente
+        Customer customer = new Customer();
+        customer.setFirstname(signupForm.getFirstname());
+        customer.setLastname(signupForm.getLastname());
+        customer.setUsername(signupForm.getUsername());
+//        customer.setPassword(signupForm.getPassword1());
+        customer.setPassword(passwordEncoder.encode(signupForm.getPassword1()));
+
+        // crea ruolo
+        Role role = roleService.getRoleByName("ROLE_USER");
+        // aggiunge ruolo a customer
+        customer.getRoles()
+                .add(role);
+        // aggiunge customer a role
+        role.getCustomers()
+            .add(customer);
+
+        log.info("Customer: {}", customer);
+
+        // rende persistenti firstname, lastname, email e password del nuovo utente
+        customer = customerRepository.save(customer);
+
+        return customer;
     }
 
     @Override

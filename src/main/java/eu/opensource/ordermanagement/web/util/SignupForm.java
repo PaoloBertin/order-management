@@ -20,8 +20,10 @@ public class SignupForm {
     @NotEmpty(message = "Email is required")
     private String username;
 
+    private String oldPassword;
+
     @NotEmpty(message = "Password is required")
-    private String password;
+    private String password1;
 
     @NotEmpty(message = "Password is required")
     private String password2;

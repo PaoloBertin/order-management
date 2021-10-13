@@ -47,8 +47,8 @@ dependencies {
     runtimeOnly 'org.webjars:popper.js:2.0.2'
     runtimeOnly 'org.webjars:font-awesome:5.13.0'
 
-//    runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'mysql:mysql-connector-java'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'

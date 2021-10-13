@@ -1,7 +1,6 @@
 package eu.opensource.ordermanagement.web.controller;
 
 import eu.opensource.ordermanagement.domain.Customer;
-import eu.opensource.ordermanagement.domain.Role;
 import eu.opensource.ordermanagement.service.CustomerService;
 import eu.opensource.ordermanagement.service.RoleService;
 import eu.opensource.ordermanagement.web.util.Message;
@@ -45,6 +44,12 @@ public class SignUpController {
 
         // verifica che i dati del form siano validi
         Message message = null;
+        if (!signupForm.getPassword1()
+                       .equals(signupForm.getPassword2())) {
+            message = new Message("error", messageSource.getMessage("message.invalid_signup", new Object[]{}, locale));
+            uiModel.addAttribute("message", message);
+            return "login/signupForm";
+        }
         if (result.hasErrors()) {
             message = new Message("error", messageSource.getMessage("message.invalid_signup", new Object[]{}, locale));
             uiModel.addAttribute("message", message);
@@ -52,7 +57,6 @@ public class SignUpController {
         }
 
         // verifica che l'username (=email) non sia presente nel db
-        message = null;
         String email = signupForm.getUsername();
         if (customerService.getCustomerByUsername(email) != null) {
             message = new Message("error", messageSource.getMessage("message.signup.email", new Object[]{}, locale));
@@ -60,31 +64,17 @@ public class SignUpController {
             return "login/signupForm";
         }
 
-        // crea nuovo utente
-        Customer customer = new Customer();
-        customer.setUsername(email);
-        customer.setFirstname(signupForm.getFirstname());
-        customer.setLastname(signupForm.getLastname());
-        customer.setPassword(signupForm.getPassword());
+        Customer customer = customerService.registrationCustomer(signupForm);
 
-        // crea ruolo
-        Role role = roleService.getRoleByName("ROLE_USER");
-        // aggiunge ruolo a customer
-        customer.getRoles()
-                .add(role);
-        // aggiunge customer a role
-        role.getCustomers()
-            .add(customer);
+        if (customer.getId() > 0) {
+            message = new Message("success", messageSource.getMessage("message.registraion.email", new Object[]{}, locale));
+            redirectAttributes.addFlashAttribute("message", message);
+        } else {
+            message = new Message("error", messageSource.getMessage("message.invalid_signup", new Object[]{}, locale));
+            uiModel.addAttribute("message", message);
+            return "login/signupForm";
+        }
 
-        log.info("Customer: {}", customer);
-
-        // rende persistenti firstname, lastname, email e password del nuovo utente
-        customer = customerService.saveCustomer(customer);
-        //customer.setId(id);
-        customerService.setCurrentCustomer(customer);
-
-        message = new Message("success", messageSource.getMessage("message.registraion.email", new Object[]{}, locale));
-        redirectAttributes.addFlashAttribute("message", message);
         return "redirect:/";
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RequiredArgsConstructor
@@ -31,15 +32,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 //            .antMatchers("/**").permitAll()
-            .antMatchers("/resources/**").permitAll()
-            .antMatchers("/*").permitAll()
-            .antMatchers("/login/*").permitAll()
-            .antMatchers("/logout/*").permitAll()
-            .antMatchers("/errors").permitAll()
-            .antMatchers("/orders/**").hasAnyRole("USER", "ADMIN")
-            .antMatchers("/cart/**").hasAnyRole("USER", "ADMIN")
-            .antMatchers("/customers/*").hasAnyRole("USER", "ADMIN")
-            .antMatchers("/admin/**").hasRole("ADMIN")
+            .antMatchers("/resources/**")
+            .permitAll()
+            .antMatchers("/*")
+            .permitAll()
+            .antMatchers("/login/*")
+            .permitAll()
+            .antMatchers("/logout/*")
+            .permitAll()
+            .antMatchers("/errors")
+            .permitAll()
+            .antMatchers("/orders/**")
+            .hasAnyRole("USER", "ADMIN")
+            .antMatchers("/cart/**")
+            .hasAnyRole("USER", "ADMIN")
+            .antMatchers("/customers/*")
+            .hasAnyRole("USER", "ADMIN")
+            .antMatchers("/admin/**")
+            .hasRole("ADMIN")
 
             .and()
             .formLogin()
