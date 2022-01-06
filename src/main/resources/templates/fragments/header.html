@@ -8,10 +8,7 @@
 
 <body>
     <div th:fragment="header">
-        <!--
-    <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: #FFCC33;">
--->
-        <nav class="navbar navbar-expand-xl navbar-light" style="background-color: #e3f2fd;">
+         <nav class="navbar navbar-expand-xl navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
                 <a class="navbar-brand" th:href="@{/}">
                     <img src="/images/logo_aziendale.jpg" width="210" height="52" alt="Home">
@@ -37,11 +34,6 @@
                             </div>
                         </li>
                     </ul>
-
-
-
-
-
 
                     <!-- shpping cart -->
                     <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
