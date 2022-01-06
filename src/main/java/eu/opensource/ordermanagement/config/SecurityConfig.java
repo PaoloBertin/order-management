@@ -22,54 +22,52 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(final AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder)
-        ;
+                .passwordEncoder(passwordEncoder);
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-//            .antMatchers("/**").permitAll()
-            .antMatchers("/resources/**").permitAll()
-            .antMatchers("/*").permitAll()
-            .antMatchers("/login/*").permitAll()
-            .antMatchers("/logout/*").permitAll()
-            .antMatchers("/errors").permitAll()
-            .antMatchers("/orders/**").hasAnyRole("USER", "ADMIN")
-            .antMatchers("/cart/**").hasAnyRole("USER", "ADMIN")
-            .antMatchers("/customers/*").hasAnyRole("USER", "ADMIN")
-            .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/**").permitAll()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/*").permitAll()
+                .antMatchers("/login/*").permitAll()
+                .antMatchers("/logout/*").permitAll()
+                .antMatchers("/errors").permitAll()
+                .antMatchers("/orders/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/cart/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/customers/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
 
-            .and()
-            .formLogin()
-            .loginPage("/login/form")
-//            .loginProcessingUrl("/login")
-            .loginProcessingUrl("/authenticate")
-            .failureUrl("/login?error")
-            .defaultSuccessUrl("/default", true)
-            .permitAll()
-            .usernameParameter("username")
-            .passwordParameter("password")
+                .and()
+                .formLogin()
+                .loginPage("/login/form")
+                // .loginProcessingUrl("/login")
+                .loginProcessingUrl("/authenticate")
+                .failureUrl("/login?error")
+                .defaultSuccessUrl("/default", true)
+                .permitAll()
+                .usernameParameter("username")
+                .passwordParameter("password")
 
-            .and()
-            .logout()
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/login?logout")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
 
-            .and()
-            .httpBasic()
+                .and()
+                .httpBasic()
 
-            // CSRF is enabled by default, with Java Config
-            .and()
-            .csrf()
-            .disable()
+                // CSRF is enabled by default, with Java Config
+                .and()
+                .csrf()
+                .disable()
 
-            // Enable <frameset> in order to use H2 web console
-            .headers()
-            .frameOptions()
-            .disable()
-        ;
+                // Enable <frameset> in order to use H2 web console
+                .headers()
+                .frameOptions()
+                .disable();
 
     }
 }
