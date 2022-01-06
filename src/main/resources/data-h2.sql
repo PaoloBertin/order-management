@@ -49,7 +49,7 @@ INSERT INTO categories(id, name)
 
 INSERT INTO products(id, name, product_code, price, category_id, description)
     VALUES( 1, 'Florinda',        'P0001',  9.00, 1, 'Focaccia bianca all’olio Evo e origano di Sicilia. Fuori cottura: rosmarino, bresaola, rucolina selvatica e pomodorini freschi.'),
-          ( 2, 'La Ravelllese',   'P0002', 10.00, 1, 'Conserva di pomodorino giallo Corbarino DOP, mozzarella di bufala di Battipaglia DOP, pancetta stufata croccante e origano di Sicilia. Fuori cottura: pepe nero, pecorino grattugiato fresco.'),
+          ( 2, 'La Ravellese',   'P0002', 10.00, 1, 'Conserva di pomodorino giallo Corbarino DOP, mozzarella di bufala di Battipaglia DOP, pancetta stufata croccante e origano di Sicilia. Fuori cottura: pepe nero, pecorino grattugiato fresco.'),
           ( 3, 'A Burrat',        'P0003', 11.00, 1, 'Conserva di pomodoro San Marzano DOP. Fuori cottura: burrata di Puglia 100g, Crudo di Sauris, pomodorini secchi, rucolina selvatica.'),
           ( 4, 'Marinara',        'P0004',  5.00, 2, 'Pomodoro, aglio, basilico fresco, olio Evo, origano di Sicilia'),
           ( 5, 'Margherita',      'P0005',  6.00, 2, 'Pomodoro, mozzarella, basilico fresco, olio Evo.'),
