@@ -1,10 +1,8 @@
 package eu.opensource.ordermanagement.service.impl.dto;
 
-import eu.opensource.ordermanagement.domain.LineItem;
 import eu.opensource.ordermanagement.domain.Order;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class OrderDtoBuilder {
 

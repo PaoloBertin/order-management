@@ -58,7 +58,7 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
     @Override
     public Customer registrationCustomer(SignupForm signupForm) {
 
-        String encodedPassword = passwordEncoder.encode(signupForm.getPassword1());
+//        String encodedPassword = passwordEncoder.encode(signupForm.getPassword1());
 
         // crea nuovo utente
         Customer customer = new Customer();

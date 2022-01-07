@@ -1,6 +1,5 @@
 package eu.opensource.ordermanagement.web.controller;
 
-import eu.opensource.ordermanagement.domain.Order;
 import org.hamcrest.collection.IsCollectionWithSize;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -62,8 +61,6 @@ class OrderControllerTest {
     @Sql({"/schema-h2.sql", "/data-h2.sql"})
     @Test
     void saveOrderTest() throws Exception {
-
-        Order order = new Order();
 
         mvc.perform(post(url + "checkout"));
     }

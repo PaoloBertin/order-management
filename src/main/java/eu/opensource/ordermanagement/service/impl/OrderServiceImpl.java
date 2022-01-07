@@ -28,8 +28,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto getOrderById(Long orderId) {
 
         Optional<Order> order = orderRepository.findById(orderId);
-        OrderDto orderDto = OrderDtoBuilder.newOrderDto(order.get())
-                                           .build(); // TODO verificare che order not null
+        OrderDto orderDto = OrderDtoBuilder.newOrderDto(order.get()).build();
         return orderDto;
     }
 
@@ -39,8 +38,7 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orders = orderRepository.findAll();
         List<OrderDto> orderDtos = new ArrayList<>();
         for (Order order : orders) {
-            OrderDto orderDto = OrderDtoBuilder.newOrderDto(order)
-                                               .build();
+            OrderDto orderDto = OrderDtoBuilder.newOrderDto(order).build();
             orderDtos.add(orderDto);
         }
 
@@ -54,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
         List<OrderDto> orderDtos = new ArrayList<>();
         for (Order order : orders) {
             OrderDto orderDto = OrderDtoBuilder.newOrderDto(order)
-                                               .build();
+                    .build();
             orderDtos.add(orderDto);
         }
 
@@ -65,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
     public Order saveOrder() {
 
         Authentication authentication = SecurityContextHolder.getContext()
-                                                             .getAuthentication();
+                .getAuthentication();
         Customer customer = (Customer) authentication.getPrincipal();
 
         Order order = new Order();

@@ -7,14 +7,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.*;
 
 @Data
 @RequiredArgsConstructor
 @Table(name = "customers")
 @Entity
-public class Customer implements UserDetails, Serializable {
+public class Customer implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 

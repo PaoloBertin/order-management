@@ -4,7 +4,6 @@ import eu.opensource.ordermanagement.service.OrderService;
 import eu.opensource.ordermanagement.service.impl.dto.OrderDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
