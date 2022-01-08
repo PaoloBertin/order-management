@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eu.opensource.ordermanagement.domain.Cart;
 
-@RequestMapping("/")
+@RequestMapping("/rest")
 @RestController
 public class WelcomeRestController {
 
