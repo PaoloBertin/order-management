@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
-<html th:lang="${lang}" th:with="lang=${#locale.language}" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html th:lang="${lang}" th:with="lang=${#locale.language}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 </head>
@@ -9,8 +8,8 @@
 <body>
     <div th:fragment="header">
 
-<!--         <nav class="navbar navbar-expand-xxl navbar-light" style="background-color: #e3f2fd;">  -->
-            <nav class="navbar navbar-expand-xxl navbar-light" style="background-color: #e3f2fd;">
+        <!--         <nav class="navbar navbar-expand-xxl navbar-light" style="background-color: #e3f2fd;">  -->
+        <nav class="navbar navbar-expand-xxl navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
                 <a class="navbar-brand" th:href="@{/}">
                     <img src="/images/logo_aziendale.jpg" width="210" height="52" alt="Home">
@@ -23,10 +22,8 @@
 
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item dropdown me-5">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown">
-                                <span class="navbar-text" style="font-size: 1.1em;"
-                                    th:text="#{label.takeaway}">Asporto</span>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                <span class="navbar-text" style="font-size: 1.1em;" th:text="#{label.takeaway}">Asporto</span>
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" th:href="@{/catalog/1}">
@@ -42,8 +39,7 @@
                         <li class="nav-item ms-5" sec:authorize="isAuthenticated()">
                             <a class="nav-link" th:href="@{'/cart/show'}">
                                 <span><i class="fas fa-shopping-cart" style="font-size: 1.5em;"></i></span>
-                                <span class="badge badge-primary" style="font-size: 1em;"
-                                    th:text="${itemsInCart}"></span>
+                                <span class="badge badge-primary" style="font-size: 1em;" th:text="${itemsInCart}"></span>
                             </a>
                         </li>
                     </ul>
@@ -87,8 +83,8 @@
                         </li>
 
                         <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
                                 <span class="navbar-text" th:text="#{label.data}">I miei dati</span>
                             </a>
                             <!--  -->
@@ -112,8 +108,7 @@
                                 </div>
                                 <div sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
                                     <a class="dropdown-item" th:href="@{/orders/customer}">
-                                        <span class="navbar-text" th:text="#{label.orders}">i propri
-                                            ordini</span>
+                                        <span class="navbar-text" th:text="#{label.orders}">i propri ordini</span>
                                     </a>
                                 </div>
                                 <div class="dropdown-divider"></div>
@@ -124,13 +119,12 @@
                         </li>
                         <li class="nav-item" sec:authorize="isAuthenticated()">
                             <a class="nav-link">
-                                <span class="navbar-text" th:text="#{label.user}">user</span>
+                                <span class="navbar-text" style="font-size: 0.8em;" th:text="#{label.user}">user</span>
                             </a>
                         </li>
                         <li class="nav-item" sec:authorize="isAuthenticated()">
                             <a class="nav-link">
-                                <span class="navbar-text"
-                                    th:text="${#authentication.getPrincipal().nickname}">username</span>
+                                <span class="navbar-text" style="font-size: 0.8em;" th:text="${#authentication.getPrincipal().nickname}">username</span>
                             </a>
                         </li>
 
