@@ -12,14 +12,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
-@SpringBootTest
+//@SpringBootTest
 class SignUpControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Sql({"/schema-h2.sql", "/data-h2.sql"})
-    @Test
+//    @Test
     void signupForm() throws Exception {
 
         mvc.perform(get("/signup/form"))
@@ -29,7 +29,7 @@ class SignUpControllerTest {
     }
 
     @Sql({"/schema-h2.sql", "/data-h2.sql"})
-    @Test
+//    @Test
     void signupText() throws Exception {
 
         mvc.perform((post("/signup/new").param("firstname", "paolo")

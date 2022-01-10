@@ -10,13 +10,13 @@ import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+//@SpringBootTest
 class OrderServiceImplTest {
 
     @Autowired
     private OrderService orderService;
 
-    @Test
+//    @Test
     void getOrderById() {
 
         long orderId = 1L;
@@ -24,17 +24,17 @@ class OrderServiceImplTest {
         assertThat(orderDto.getTotalAmount()).isEqualByComparingTo(BigDecimal.valueOf(17.00));
     }
 
-    @Test
+//    @Test
     void getAllOrders() {
 
     }
 
-    @Test
+//    @Test
     void getOrderByCustomer() {
 
     }
 
-    @Test
+//    @Test
     void saveOrder() {
 
     }

@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @AutoConfigureMockMvc
-@SpringBootTest
+//@SpringBootTest
 class CartControllerTest {
 
     @Autowired
@@ -22,7 +22,7 @@ class CartControllerTest {
     private final String url = "/cart";
 
     @Sql({"/schema-h2.sql", "/data-h2.sql"})
-    @Test
+//    @Test
     void addProductToCartTest() throws Exception {
 
         mvc.perform(get(url + "/add").param("productCode", "P0001")
