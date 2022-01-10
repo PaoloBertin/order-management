@@ -33,7 +33,8 @@ public class CatalogAdminController {
     private final Cart cart;
 
     @GetMapping("/categories/products")
-    public String viewCreateProductForm(@RequestParam String form, Model uiModel) {
+    public String viewCreateProductForm(@RequestParam String form,
+            Model uiModel) {
 
         List<Category> categories = catalogService.getAllCategories();
         uiModel.addAttribute("categories", categories);
@@ -46,13 +47,17 @@ public class CatalogAdminController {
     }
 
     @PostMapping("/categories/products")
-    public String createProduct(@Valid ProductForm productForm, BindingResult result, Model uiModel, RedirectAttributes redirectAttributes,
-                                Locale locale) {
+    public String createProduct(@Valid ProductForm productForm,
+            BindingResult result,
+            Model uiModel,
+            RedirectAttributes redirectAttributes,
+            Locale locale) {
 
         // verifica che i dati del form siano validi
         Message message = null;
         if (result.hasErrors()) {
-            message = new Message("error", messageSource.getMessage("message.product_save_fail", new Object[]{}, locale));
+            message = new Message("error",
+                    messageSource.getMessage("message.product_save_fail", new Object[] {}, locale));
             uiModel.addAttribute("message", message);
             return "catalog/createProduct";
         }
@@ -70,7 +75,8 @@ public class CatalogAdminController {
         // rende persistenti dati prodotto
         product = catalogService.saveProduct(product);
 
-        message = new Message("success", messageSource.getMessage("message.product_save_success", new Object[]{}, locale));
+        message = new Message("success",
+                messageSource.getMessage("message.product_save_success", new Object[] {}, locale));
         redirectAttributes.addFlashAttribute("message", message);
         return "redirect:/";
     }
@@ -84,8 +90,8 @@ public class CatalogAdminController {
         Optional<Category> category = catalogService.getCategoryById(categoryId);
         if (category.isPresent()) {
             String categoryName = catalogService.getCategoryByName(category.get()
-                                                                           .getName())
-                                                .getName();
+                    .getName())
+                    .getName();
             uiModel.addAttribute("categoryName", categoryName);
         }
 
@@ -109,7 +115,7 @@ public class CatalogAdminController {
             productForm.setPrice(product.getPrice());
             productForm.setDescription(product.getDescription());
             productForm.setCategoryName(product.getCategory()
-                                               .getName());
+                    .getName());
             uiModel.addAttribute("productForm", productForm);
             List<Category> categories = catalogService.getAllCategories();
             uiModel.addAttribute("categories", categories);
@@ -121,13 +127,16 @@ public class CatalogAdminController {
     }
 
     @PutMapping("/categories/products")
-    public String editProduct(@Valid ProductForm productForm, BindingResult result, Model uiModel, RedirectAttributes redirectAttributes,
+    public String editProduct(@Valid ProductForm productForm,
+                              BindingResult result,
+                              Model uiModel,
+                              RedirectAttributes redirectAttributes,
                               Locale locale) {
 
         // verifica che i dati del form siano validi
         Message message = null;
         if (result.hasErrors()) {
-            message = new Message("error", messageSource.getMessage("message.product_save_fail", new Object[]{}, locale));
+            message = new Message("error", messageSource.getMessage("message.product_save_fail", new Object[] {}, locale));
             uiModel.addAttribute("message", message);
             return "catalog/productListAdmin";
         }
@@ -146,7 +155,8 @@ public class CatalogAdminController {
         // rende persistenti dati prodotto
         product = catalogService.saveProduct(product);
 
-        message = new Message("success", messageSource.getMessage("message.product_save_success", new Object[]{}, locale));
+        message = new Message("success",
+                messageSource.getMessage("message.product_save_success", new Object[] {}, locale));
         redirectAttributes.addFlashAttribute("message", message);
 
         return "redirect:/";
@@ -156,7 +166,7 @@ public class CatalogAdminController {
     public String deleteProduct(@RequestParam Long id) {
 
         Product product = catalogService.getProductById(id)
-                                        .orElseThrow();
+                .orElseThrow();
 
         catalogService.deleteProduct(product);
 
