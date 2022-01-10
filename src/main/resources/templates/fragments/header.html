@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 
-<html th:lang="${lang}" th:with="lang=${#locale.language}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html   th:lang="${lang}" 
+        th:with="lang=${#locale.language}" 
+        xmlns:th="http://www.thymeleaf.org" 
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 </head>
@@ -11,6 +14,7 @@
         <!--         <nav class="navbar navbar-expand-xxl navbar-light" style="background-color: #e3f2fd;">  -->
         <nav class="navbar navbar-expand-xxl navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
+                
                 <a class="navbar-brand" th:href="@{/}">
                     <img src="/images/logo_aziendale.jpg" width="210" height="52" alt="Home">
                 </a>
@@ -19,7 +23,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item dropdown me-5">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
@@ -41,6 +44,27 @@
                                 <span><i class="fas fa-shopping-cart" style="font-size: 1.5em;"></i></span>
                                 <span class="badge badge-primary" style="font-size: 1em;" th:text="${itemsInCart}"></span>
                             </a>
+                        </li>
+                    </ul>
+
+
+                    <!-- amministrazione -->
+                    <ul class="navbar-nav ml-auto" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarAdmin" role="button" data-bs-toggle="dropdown">
+                                <span class="navbar-text" th:text="#{label.administration}">amministrazione</span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarAdmin">
+                                <a class="dropdown-item" th:href="@{/admin/catalog/categories/products?form=true}">
+                                    <span class="navbar-text" th:text="#{label.productAdd}">aggiungi prodotto</span>
+                                </a>
+                                <a class="dropdown-item" th:href="@{/admin/catalog/1/products}">
+                                    <span class="navbar-text" th:text="#{label.productUpdate}">agggiorna prodotto</span>
+                                </a>
+                                <a class="dropdown-item" th:href="@{/admin/orders}">
+                                    <span class="navbar-text" th:text="#{label.allorders}">tutti gli ordini</span>
+                                </a>
+                            </div>
                         </li>
                     </ul>
 
